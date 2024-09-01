@@ -306,6 +306,12 @@ class Tapper:
 
 
 async def run_tapper(tg_client: Client, proxy: str | None):
+    # Генерируем случайную задержку от 1 до 100 секунд перед запуском сессии
+    delay1 = random.randrange(1, 10)
+    delay2 = random.randrange(50, 600, 50)
+    delay = delay1 * 5 + delay2
+    logger.info(f"<light-yellow> {delay:.2f} секунд</light-yellow>")
+    await asyncio.sleep(delay)  # Ожидание
     try:
         await Tapper(tg_client=tg_client).run(proxy=proxy)
     except InvalidSession:
